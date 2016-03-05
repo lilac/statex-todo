@@ -8,28 +8,67 @@ import React, {
   Component,
   StyleSheet,
   Text,
-  View
+  View,
+  ListView
 } from 'react-native';
 
-import 'react-native-sqlite-storage/test/index.ios.promise';
+//import 'react-native-sqlite-storage/test/index.ios.promise';
 import * as Todo from './todo';
-Todo.test();
+import * as Utils from './utils';
+
+// Todo.test();
 
 class StatexTodo extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2
+      }),
+      loaded: false
+    };
+  }
+
+  componentDidMount() {
+    return this.update();
+  }
+
+  async update() {
+    let db = await Todo.init();
+    const self = this;
+    db.transaction(async tx => {
+      let [_, results] = await Todo.all(tx);
+      this.setState({
+        dataSource: /*Object.assign(this.state.dataSource, {
+          getRowData: (data, sectionId, rowId) => results.rows.item(rowId)
+        }),*/
+        this.state.dataSource.cloneWithRows(Utils.sqlRowsToArray(results.rows)),
+        loaded: true
+      })
+    });
+  }
+
+  renderLoadingView() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+        <Text>
+          Loading...
         </Text>
       </View>
+    );
+  }
+
+  render() {
+    if (!this.state.loaded) {
+      return this.renderLoadingView();
+    }
+    else return (
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={(rowData) => <Text style={styles.task}>{rowData.text}</Text>}
+        renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
+        style={styles.listView}
+      />
     );
   }
 }
@@ -41,10 +80,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
+  task: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#CCCCCC',
   },
   instructions: {
     textAlign: 'center',

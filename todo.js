@@ -9,6 +9,7 @@ SQLite.enablePromise(true);
 
 const openDatabase = SQLite.openDatabase;
 
+export const ALL_TASK_SQL = 'SELECT * FROM tasks';
 export const CREATE_TABLE_SQL = 'CREATE TABLE IF NOT EXISTS tasks (id REAL UNIQUE, text TEXT)';
 export const ADD_TASK_SQL: string = 'INSERT INTO tasks (id, text) values (?, ?)';
 export const DELETE_TASK_SQL: string = 'DELETE FROM tasks WHERE id=?';
@@ -20,8 +21,12 @@ type Task = {
 
 //type Database = {transaction: (tx: any) => void}
 
-export const add = (transaction: SQLTransaction) => (task: Task): void => {
-  transaction.executeSql(ADD_TASK_SQL, [task.id, task.text])
+export async function all(transaction: SQLTransaction) {
+  return transaction.executeSql(ALL_TASK_SQL, [])
+}
+
+export const add = (transaction: SQLTransaction) => async (task: Task): Promise => {
+  return transaction.executeSql(ADD_TASK_SQL, [task.id, task.text])
 };
 
 export const remove = (transaction: SQLTransaction) => (id: string) => {
