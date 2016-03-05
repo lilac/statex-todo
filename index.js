@@ -16,7 +16,7 @@ import React, {
 import * as Todo from './todo';
 import * as Utils from './utils';
 
-// Todo.test();
+//Todo.test();
 
 class StatexTodo extends Component {
   constructor(props) {
@@ -35,7 +35,6 @@ class StatexTodo extends Component {
 
   async update() {
     let db = await Todo.init();
-    const self = this;
     db.transaction(async tx => {
       let [_, results] = await Todo.all(tx);
       this.setState({
