@@ -28,6 +28,9 @@
 .*/node_modules/react/lib/React.js
 .*/node_modules/react/lib/ReactDOM.js
 
+.*/node_modules/react-native/.*
+.*/android/.*
+
 # Ignore commoner tests
 .*/node_modules/commoner/test/.*
 
@@ -62,4 +65,4 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(2[0-1]\\|1[0-9]\\|[0-9
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
 
 [version]
-0.21.0
+0.22.0
