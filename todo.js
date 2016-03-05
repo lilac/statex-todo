@@ -21,8 +21,9 @@ type Task = {
 
 //type Database = {transaction: (tx: any) => void}
 
-export async function all(transaction: SQLTransaction) {
-  return transaction.executeSql(ALL_TASK_SQL, [])
+export function all(db: Database) {
+  // Note: The behaviour of db.executeSql is weird, as it wraps results in a list. Thus, we need to unwrap it.
+  return db.executeSql(ALL_TASK_SQL, []).then(([res]) => res)
 }
 
 export const add = (transaction: SQLTransaction) => async (task: Task): Promise => {

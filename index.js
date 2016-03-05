@@ -35,16 +35,11 @@ class StatexTodo extends Component {
 
   async update() {
     let db = await Todo.init();
-    db.transaction(async tx => {
-      let [_, results] = await Todo.all(tx);
-      this.setState({
-        dataSource: /*Object.assign(this.state.dataSource, {
-          getRowData: (data, sectionId, rowId) => results.rows.item(rowId)
-        }),*/
-        this.state.dataSource.cloneWithRows(Utils.sqlRowsToArray(results.rows)),
-        loaded: true
-      })
-    });
+    let results = await Todo.all(db);
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(Utils.sqlRowsToArray(results.rows)),
+      loaded: true
+    })
   }
 
   renderLoadingView() {
