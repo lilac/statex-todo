@@ -11,6 +11,8 @@ import React, {
   View
 } from 'react-native';
 
+import 'react-native-sqlite-storage/test/index.ios.promise';
+
 class StatexTodo extends Component {
   render() {
     return (

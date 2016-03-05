@@ -3,6 +3,7 @@ package com.statextodo;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
+import org.pgsqlite.SQLitePluginPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +16,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "StatexTodo";
+        return "SQLiteDemo";
     }
 
     /**
@@ -33,8 +34,9 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected List<ReactPackage> getPackages() {
-        return Arrays.<ReactPackage>asList(
-            new MainReactPackage()
+        return Arrays.asList(
+            new MainReactPackage(),
+            new SQLitePluginPackage(this)   // register SQLite Plugin here
         );
     }
 }
