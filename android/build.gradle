@@ -22,3 +22,7 @@ allprojects {
         }
     }
 }
+
+ext.libraries = [
+        'react-native': "com.facebook.react:react-native:+"
+]
