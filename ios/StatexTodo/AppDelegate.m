@@ -41,16 +41,9 @@
 
 //   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"StatexTodo"
-                                               initialProperties:nil
-                                                   launchOptions:launchOptions];
-
-  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  UIViewController *rootViewController = [UIViewController new];
-  rootViewController.view = rootView;
-  self.window.rootViewController = rootViewController;
-  [self.window makeKeyAndVisible];
+  self.bridge = [[RCTBridge alloc] initWithBundleURL:jsCodeLocation
+                                      moduleProvider:nil
+                                       launchOptions:launchOptions];
   return YES;
 }
 
