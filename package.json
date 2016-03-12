@@ -8,6 +8,6 @@
   "dependencies": {
     "react-native": "^0.21.0",
     "react-native-sqlite-storage": "^2.1.3",
-    "react-native-statex": "git+ssh://git@github.com:lilac/react-native-statex.git#85f033f7d6e8a06239f716e24873d73dcdb3d463"
+    "react-native-statex": "git+ssh://git@github.com:lilac/react-native-statex.git#756cf8ce67ae362ee343eeb2acd963c128b8fe32"
   }
 }
