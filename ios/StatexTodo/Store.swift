@@ -10,6 +10,9 @@ import UIKit
 import SQLite
 
 class TaskStore {
+  let tasks = Table("tasks")
+  let text = Expression<String>("text")
+  
   let db: Connection;
   
   static func new() -> TaskStore? {
@@ -24,8 +27,6 @@ class TaskStore {
   }
   
   func all() -> [Task] {
-    let tasks = Table("tasks")
-    let text = Expression<String>("text")
     
     if let rows = try? db.prepare(tasks) {
       return rows.lazy.map({ row in
@@ -33,5 +34,11 @@ class TaskStore {
       })
     }
     return []
+  }
+  
+  func add(task: Task) throws {
+    let stm = tasks.insert(or: .Replace, text <- task.title)
+    let id = try db.run(stm)
+    print("Insertion success with row id: \(id)")
   }
 }
