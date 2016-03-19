@@ -10,26 +10,36 @@ import Foundation
 import UIKit
 
 class AddTaskViewController: UIViewController {
-    var todoItem: Task = Task(title: "")
-    
-    @IBOutlet var doneButton: UIBarButtonItem!
-    @IBOutlet var textField: UITextField!
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+  var todoItem: Task = Task(title: "")
+  let store = TaskStore.new()
+  
+  @IBOutlet var doneButton: UIBarButtonItem!
+  @IBOutlet var textField: UITextField!
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+  
+  @IBAction func done(sender: UIBarButtonItem) {
+    do {
+      try store?.add(Task(title: self.textField.text!))
+    } catch _ {
+      print("Add task error")
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if (self.textField.text != "") {
-            self.todoItem = Task(title: self.textField.text!)
-        }
+    performSegueWithIdentifier("done", sender: nil)
+  }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    if (self.textField.text != "") {
+      self.todoItem = Task(title: self.textField.text!)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+  }
 }

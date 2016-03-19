@@ -11,7 +11,7 @@ import SQLite
 
 class TaskStore {
   let tasks = Table("tasks")
-  let text = Expression<String>("text")
+  let title = Expression<String>("title")
   
   let db: Connection;
   
@@ -30,14 +30,14 @@ class TaskStore {
     
     if let rows = try? db.prepare(tasks) {
       return rows.lazy.map({ row in
-        Task(title: row[text])
+        Task(title: row[title])
       })
     }
     return []
   }
   
   func add(task: Task) throws {
-    let stm = tasks.insert(or: .Replace, text <- task.title)
+    let stm = tasks.insert(or: .Replace, title <- task.title)
     let id = try db.run(stm)
     print("Insertion success with row id: \(id)")
   }

@@ -16,24 +16,26 @@ class TaskTableViewController: UITableViewController {
   var todoItems: [Task] = []
   let store = TaskStore.new()
   
-  @IBAction func unwindAndAddToList(segue: UIStoryboardSegue) {
-    let source = segue.sourceViewController as! AddTaskViewController
-    let todoItem:Task = source.todoItem
-    
-    if todoItem.title != "" {
-      do {
-        if try store?.add(todoItem) != nil {
-          //self.todoItems.append(todoItem)
-          self.loadInitialData()
-          self.tableView.reloadData()
-        }
-      } catch _ {
-        print("Save error")
-      }
-    }
+  @IBAction func addTaskDone(segue: UIStoryboardSegue) {
+//    let source = segue.sourceViewController as! AddTaskViewController
+//    let todoItem:Task = source.todoItem
+//    
+//    if todoItem.title != "" {
+//      do {
+//        if try store?.add(todoItem) != nil {
+//          //self.todoItems.append(todoItem)
+//          self.loadInitialData()
+//          self.tableView.reloadData()
+//        }
+//      } catch _ {
+//        print("Save error")
+//      }
+//    }
+    self.loadInitialData()
+    self.tableView.reloadData()
   }
   
-  @IBAction func unwindToList(segue: UIStoryboardSegue) {
+  @IBAction func addTaskCanceled(segue: UIStoryboardSegue) {
     
   }
   
