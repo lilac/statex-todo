@@ -9,11 +9,15 @@
 import UIKit
 
 class Task: NSObject {
-    let title: String
-    var completed: Bool
-    
-    init(title: String, completed: Bool = false) {
-        self.title = title
-        self.completed = completed
-    }
+  let title: String
+  var completed: Bool
+  
+  init(title: String, completed: Bool = false) {
+    self.title = title
+    self.completed = completed
+  }
+  
+  func dict() -> [String: AnyObject] {
+    return self.dictionaryWithValuesForKeys(["title", "completed"])
+  }
 }

@@ -6,15 +6,18 @@
 //  Copyright © 2016 Rewen. All rights reserved.
 //
 
-
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-  var window: UIWindow?
+public class AppDelegate: UIResponder, UIApplicationDelegate {
+  public var window: UIWindow?
   var bridge: RCTBridge?
   
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+  class func getDelegate() -> AppDelegate {
+    return UIApplication.sharedApplication().delegate as! AppDelegate
+  }
+  
+  public func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
     /**
     * Loading JavaScript code - uncomment the one you want.
     *

@@ -3,7 +3,7 @@
 //  ToDoApp
 //
 //  Created by James Deng on 12/03/2016.
-//  Copyright © 2016 Facebook. All rights reserved.
+//  Copyright © 2016 Rewen. All rights reserved.
 //
 
 import Foundation
@@ -21,11 +21,10 @@ class AddTaskViewController: UIViewController {
   }
   
   @IBAction func done(sender: UIBarButtonItem) {
-    do {
-      try store?.add(Task(title: self.textField.text!))
-    } catch _ {
-      print("Add task error")
-    }
+    let delegate = AppDelegate.getDelegate()
+    let task = Task(title: self.textField.text!)
+
+    delegate.bridge!.eventDispatcher.sendAppEventWithName("task/add", body: task.dict())
     performSegueWithIdentifier("done", sender: nil)
   }
   
