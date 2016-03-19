@@ -9,7 +9,8 @@ import React, {
   StyleSheet,
   Text,
   View,
-  ListView
+  ListView,
+  NativeAppEventEmitter
 } from 'react-native';
 
 //import 'react-native-sqlite-storage/test/index.ios.promise';
@@ -17,7 +18,16 @@ import * as Todo from './todo';
 import * as Utils from './utils';
 
 //Todo.test();
+let dbPromise = Todo.init();
 
+async function add(task) {
+  let db = await dbPromise;
+  db.transaction(Todo.add(task))
+}
+
+NativeAppEventEmitter.addListener("task/add", add);
+
+/*
 class StatexTodo extends Component {
   constructor(props) {
     super(props);
@@ -91,3 +101,4 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('StatexTodo', () => StatexTodo);
+*/
