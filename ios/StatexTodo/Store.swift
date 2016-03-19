@@ -23,9 +23,15 @@ class TaskStore {
     db = con
   }
   
-  func all() throws -> AnySequence<Row> {
+  func all() -> [Task] {
     let tasks = Table("tasks")
+    let text = Expression<String>("text")
     
-    return try db.prepare(tasks)
+    if let rows = try? db.prepare(tasks) {
+      return rows.lazy.map({ row in
+        Task(title: row[text])
+      })
+    }
+    return []
   }
 }

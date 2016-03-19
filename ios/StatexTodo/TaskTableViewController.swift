@@ -30,14 +30,10 @@ class TaskTableViewController: UITableViewController {
   }
   
   func loadInitialData() {
-    let text = Expression<String>("text")
-    
     let store = TaskStore.new()
-    
-    if let rows = try! store?.all() {
-      for row in rows {
-        todoItems.append(Task(title: row[text]))
-      }
+  
+    if let r = store?.all() {
+      todoItems = r;
     }
   }
   
