@@ -22,12 +22,14 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		9F0DCEBD1C9D07EB00C10208 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0DCEB21C9D07B300C10208 /* SQLite.framework */; };
 		9F20825B1C8A86FD00851509 /* libSQLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F20825A1C8A86E700851509 /* libSQLite.a */; };
 		9F20825D1C8A870700851509 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F20825C1C8A870700851509 /* libsqlite3.tbd */; };
 		9F279A291C93E34400FF5E4F /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F279A261C93E34400FF5E4F /* AddTaskViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		9F279A2A1C93E34400FF5E4F /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F279A271C93E34400FF5E4F /* Task.swift */; settings = {ASSET_TAGS = (); }; };
 		9F279A2B1C93E34400FF5E4F /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F279A281C93E34400FF5E4F /* TaskTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		9F279A2E1C93E35600FF5E4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F279A2C1C93E35600FF5E4F /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
+		9F279A301C9446EA00FF5E4F /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F279A2F1C9446EA00FF5E4F /* Store.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,48 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		9F0DCEB11C9D07B300C10208 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F0DCE9D1C9D07B300C10208 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247AD31C3F04ED00AE3E12;
+			remoteInfo = "SQLite iOS";
+		};
+		9F0DCEB31C9D07B300C10208 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F0DCE9D1C9D07B300C10208 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247ADD1C3F04ED00AE3E12;
+			remoteInfo = "SQLiteTests iOS";
+		};
+		9F0DCEB51C9D07B300C10208 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F0DCE9D1C9D07B300C10208 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247B3C1C3F3ED000AE3E12;
+			remoteInfo = "SQLite Mac";
+		};
+		9F0DCEB71C9D07B300C10208 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F0DCE9D1C9D07B300C10208 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247B451C3F3ED000AE3E12;
+			remoteInfo = "SQLiteTests Mac";
+		};
+		9F0DCEB91C9D07B300C10208 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F0DCE9D1C9D07B300C10208 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03A65E5A1C6BB0F50062603F;
+			remoteInfo = "SQLite tvOS";
+		};
+		9F0DCEBB1C9D07B300C10208 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F0DCE9D1C9D07B300C10208 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03A65E631C6BB0F60062603F;
+			remoteInfo = "SQLiteTests tvOS";
+		};
 		9F2082591C8A86E700851509 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9F20824B1C8A86E700851509 /* SQLite.xcodeproj */;
@@ -139,6 +183,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		9F0DCE9D1C9D07B300C10208 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = lib/SQLite.swift/SQLite.xcodeproj; sourceTree = "<group>"; };
 		9F20824B1C8A86E700851509 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../node_modules/react-native-sqlite-storage/src/ios/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		9F20825C1C8A870700851509 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		9F279A1A1C93E34400FF5E4F /* StatexTodo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StatexTodo-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -146,6 +191,7 @@
 		9F279A271C93E34400FF5E4F /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Task.swift; path = StatexTodo/Task.swift; sourceTree = "<group>"; };
 		9F279A281C93E34400FF5E4F /* TaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTableViewController.swift; path = StatexTodo/TaskTableViewController.swift; sourceTree = "<group>"; };
 		9F279A2D1C93E35600FF5E4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = StatexTodo/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9F279A2F1C9446EA00FF5E4F /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Store.swift; path = StatexTodo/Store.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +206,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F0DCEBD1C9D07EB00C10208 /* SQLite.framework in Frameworks */,
 				9F20825D1C8A870700851509 /* libsqlite3.tbd in Frameworks */,
 				9F20825B1C8A86FD00851509 /* libSQLite.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -266,6 +313,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				9F279A1A1C93E34400FF5E4F /* StatexTodo-Bridging-Header.h */,
+				9F279A2F1C9446EA00FF5E4F /* Store.swift */,
 			);
 			name = StatexTodo;
 			sourceTree = "<group>";
@@ -289,6 +337,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				9F0DCE9D1C9D07B300C10208 /* SQLite.xcodeproj */,
 				9F20825C1C8A870700851509 /* libsqlite3.tbd */,
 				9F20824B1C8A86E700851509 /* SQLite.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -330,6 +379,19 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* StatexTodo.app */,
 				00E356EE1AD99517003FC87E /* StatexTodoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9F0DCE9E1C9D07B300C10208 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9F0DCEB21C9D07B300C10208 /* SQLite.framework */,
+				9F0DCEB41C9D07B300C10208 /* SQLiteTests iOS.xctest */,
+				9F0DCEB61C9D07B300C10208 /* SQLite.framework */,
+				9F0DCEB81C9D07B300C10208 /* SQLiteTests Mac.xctest */,
+				9F0DCEBA1C9D07B300C10208 /* SQLite.framework */,
+				9F0DCEBC1C9D07B300C10208 /* SQLiteTests tvOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -453,6 +515,10 @@
 					ProductGroup = 9F20824C1C8A86E700851509 /* Products */;
 					ProjectRef = 9F20824B1C8A86E700851509 /* SQLite.xcodeproj */;
 				},
+				{
+					ProductGroup = 9F0DCE9E1C9D07B300C10208 /* Products */;
+					ProjectRef = 9F0DCE9D1C9D07B300C10208 /* SQLite.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -533,6 +599,48 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9F0DCEB21C9D07B300C10208 /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = 9F0DCEB11C9D07B300C10208 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9F0DCEB41C9D07B300C10208 /* SQLiteTests iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SQLiteTests iOS.xctest";
+			remoteRef = 9F0DCEB31C9D07B300C10208 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9F0DCEB61C9D07B300C10208 /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = 9F0DCEB51C9D07B300C10208 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9F0DCEB81C9D07B300C10208 /* SQLiteTests Mac.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SQLiteTests Mac.xctest";
+			remoteRef = 9F0DCEB71C9D07B300C10208 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9F0DCEBA1C9D07B300C10208 /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = 9F0DCEB91C9D07B300C10208 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9F0DCEBC1C9D07B300C10208 /* SQLiteTests tvOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SQLiteTests tvOS.xctest";
+			remoteRef = 9F0DCEBB1C9D07B300C10208 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9F20825A1C8A86E700851509 /* libSQLite.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -595,6 +703,7 @@
 				9F279A2B1C93E34400FF5E4F /* TaskTableViewController.swift in Sources */,
 				9F279A2A1C93E34400FF5E4F /* Task.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				9F279A301C9446EA00FF5E4F /* Store.swift in Sources */,
 				9F279A291C93E34400FF5E4F /* AddTaskViewController.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -678,13 +787,16 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native-sqlite-storage/src/ios/**",
 				);
 				INFOPLIST_FILE = StatexTodo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = StatexTodo;
 				SWIFT_OBJC_BRIDGING_HEADER = "StatexTodo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -697,12 +809,15 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native-sqlite-storage/src/ios/**",
 				);
 				INFOPLIST_FILE = StatexTodo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = StatexTodo;
 				SWIFT_OBJC_BRIDGING_HEADER = "StatexTodo-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
