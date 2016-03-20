@@ -1,3 +1,6 @@
 [submodule "ios/lib/SQLite.swift"]
 	path = ios/lib/SQLite.swift
 	url = git@github.com:stephencelis/SQLite.swift.git
+[submodule "lib/react-native-notification-center"]
+	path = lib/react-native-notification-center
+	url = git@github.com:lilac/RNNotificationCenter.git
