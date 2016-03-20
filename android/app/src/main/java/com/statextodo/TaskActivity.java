@@ -6,6 +6,7 @@ package com.statextodo;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,8 +16,9 @@ import com.facebook.react.LifecycleState;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
+import org.pgsqlite.SQLitePluginPackage;
 
-public class TaskListActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler
+public class TaskActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler
 {
 	private ReactInstanceManager mReactInstanceManager;
 
@@ -30,18 +32,23 @@ public class TaskListActivity extends AppCompatActivity implements DefaultHardwa
 		mReactInstanceManager = ReactInstanceManager.builder()
 			.setApplication(getApplication())
 				//.setBundleAssetName("index.android.bundle")
-			.setJSMainModuleName("events")
+			.setJSMainModuleName("index")
 			.addPackage(new MainReactPackage())
 			.addPackage(new StateXPackage())
+			.addPackage(new SQLitePluginPackage(this))
 			.setUseDeveloperSupport(BuildConfig.DEBUG)
 			.setInitialLifecycleState(LifecycleState.RESUMED)
 			.build();
 
-		setContentView(R.layout.task_list);
+		setContentView(R.layout.toolbar_frame);
 
 		mBroadcastManager = LocalBroadcastManager.getInstance(this);
 
 		setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		fragmentManager.beginTransaction()
+			.replace(R.id.frame, new TaskListFragment());
 	}
 
 	@Override
