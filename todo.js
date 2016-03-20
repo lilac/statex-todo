@@ -48,15 +48,3 @@ export const init = async (): Promise<Database> => {
   await database.transaction(create);
   return database;
 };
-
-export const test = async () => {
-  let db = await init();
-  db.transaction((tx) => {
-    for (i of Array(7).keys()) {
-      add(tx)(
-        {id: i, title: i}
-      );
-    }
-    remove(tx)('0');
-  })
-};

@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 
 class AddTaskViewController: UIViewController {
-  var todoItem: Task = Task(title: "")
-  let store = TaskStore.new()
   
   @IBOutlet var doneButton: UIBarButtonItem!
   @IBOutlet var textField: UITextField!
@@ -26,12 +24,6 @@ class AddTaskViewController: UIViewController {
 
     delegate.bridge!.eventDispatcher.sendAppEventWithName("task/add", body: task.dict())
     performSegueWithIdentifier("done", sender: nil)
-  }
-  
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-    if (self.textField.text != "") {
-      self.todoItem = Task(title: self.textField.text!)
-    }
   }
   
   override func viewDidLoad() {
