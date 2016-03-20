@@ -20,4 +20,12 @@ async function add(task) {
   NotificationManager.postNotification("/task");
 }
 
+async function remove(id) {
+  let db = await dbPromise;
+  await db.transaction(Todo.remove(id));
+  NotificationManager.postNotification(`/task/$id`);
+  NotificationManager.postNotification("/task");
+}
+
 NativeAppEventEmitter.addListener("task/add", add);
+NativeAppEventEmitter.addListener("task/delete", remove);

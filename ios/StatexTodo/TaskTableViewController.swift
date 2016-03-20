@@ -13,6 +13,7 @@ import SQLite
 
 class TaskTableViewController: UITableViewController {
   static let taskKey = "/task"
+  static let DELETE_TASK_ACTION = "task/delete"
   var todoItems: [Task] = []
   let store = TaskStore.new()
   
@@ -61,6 +62,19 @@ class TaskTableViewController: UITableViewController {
     }
     
     return tempCell
+  }
+  
+  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    if editingStyle == .Delete {
+      let task = todoItems[indexPath.row]
+      AppDelegate.eventDispatcher?.sendAppEventWithName(TaskTableViewController.DELETE_TASK_ACTION, body: task.id)
+      
+      tableView.beginUpdates()
+      todoItems.removeAtIndex(indexPath.row)
+      // Note that indexPath is wrapped in an array:  [indexPath]
+      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      tableView.endUpdates()
+    }
   }
   
   override func viewDidLoad() {

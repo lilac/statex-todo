@@ -12,6 +12,8 @@ import SQLite
 class TaskStore {
   let tasks = Table("tasks")
   let title = Expression<String>("title")
+  let id = Expression<Int>("id")
+  let status = Expression<Int>("status")
   
   let db: Connection;
   
@@ -27,10 +29,9 @@ class TaskStore {
   }
   
   func all() -> [Task] {
-    
     if let rows = try? db.prepare(tasks) {
       return rows.lazy.map({ row in
-        Task(title: row[title])
+        Task(id: row[id], title: row[title], completed: row[status] > 0)
       })
     }
     return []

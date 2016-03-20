@@ -9,10 +9,17 @@
 import UIKit
 
 class Task: NSObject {
+  let id: Int
   let title: String
   var completed: Bool
   
-  init(title: String, completed: Bool = false) {
+//  init(title: String, completed: Bool = false) {
+//    self.title = title
+//    self.completed = completed
+//  }
+  
+  init(id: Int = -1, title: String, completed: Bool = false) {
+    self.id = id
     self.title = title
     self.completed = completed
   }

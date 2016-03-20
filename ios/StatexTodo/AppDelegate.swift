@@ -17,6 +17,8 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
     return UIApplication.sharedApplication().delegate as! AppDelegate
   }
   
+  static let eventDispatcher = AppDelegate.getDelegate().bridge?.eventDispatcher
+
   public func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
     /**
     * Loading JavaScript code - uncomment the one you want.

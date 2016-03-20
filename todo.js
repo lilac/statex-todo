@@ -35,8 +35,8 @@ export const add = (task: Task) => (transaction: SQLTransaction): Promise => {
   return transaction.executeSql(ADD_TASK_SQL, [task.title])
 };
 
-export const remove = (transaction: SQLTransaction) => (id: string) => {
-  transaction.executeSql(DELETE_TASK_SQL, [id]);
+export const remove = (id: string) => (transaction: SQLTransaction) => {
+  return transaction.executeSql(DELETE_TASK_SQL, [id]);
 };
 
 export const create = (transaction: SQLTransaction) => {
