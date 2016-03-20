@@ -12,7 +12,7 @@ import UIKit
 import SQLite
 
 class TaskTableViewController: UITableViewController {
-  
+  static let taskKey = "/task"
   var todoItems: [Task] = []
   let store = TaskStore.new()
   
@@ -31,8 +31,8 @@ class TaskTableViewController: UITableViewController {
 //        print("Save error")
 //      }
 //    }
-    self.loadInitialData()
-    self.tableView.reloadData()
+    //self.loadInitialData()
+    //self.tableView.reloadData()
   }
   
   @IBAction func addTaskCanceled(segue: UIStoryboardSegue) {
@@ -43,6 +43,11 @@ class TaskTableViewController: UITableViewController {
     if let r = store?.all() {
       todoItems = r;
     }
+  }
+  
+  func reload() {
+    loadInitialData()
+    self.tableView.reloadData()
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -76,6 +81,10 @@ class TaskTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     loadInitialData()
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "reload", name: TaskTableViewController.taskKey, object: nil)
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
   }
   
   override func didReceiveMemoryWarning() {
@@ -88,5 +97,9 @@ class TaskTableViewController: UITableViewController {
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return todoItems.count
+  }
+  
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 }

@@ -10,19 +10,22 @@ import React, {
   Text,
   View,
   ListView,
-  NativeAppEventEmitter
+  NativeAppEventEmitter,
+  NativeModules
 } from 'react-native';
 
 //import 'react-native-sqlite-storage/test/index.ios.promise';
 import * as Todo from './todo';
 import * as Utils from './utils';
 
+const NotificationManager = NativeModules.NotificationManager;
 //Todo.test();
 let dbPromise = Todo.init();
 
 async function add(task) {
   let db = await dbPromise;
-  db.transaction(Todo.add(task))
+  await db.transaction(Todo.add(task));
+  NotificationManager.postNotification("/task");
 }
 
 NativeAppEventEmitter.addListener("task/add", add);

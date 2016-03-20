@@ -29,6 +29,7 @@
 		9F279A2B1C93E34400FF5E4F /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F279A281C93E34400FF5E4F /* TaskTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		9F279A2E1C93E35600FF5E4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F279A2C1C93E35600FF5E4F /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		9F279A301C9446EA00FF5E4F /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F279A2F1C9446EA00FF5E4F /* Store.swift */; settings = {ASSET_TAGS = (); }; };
+		9F2F8C641C9E596C0010F2BF /* libRNNotificationCenter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2F8C631C9E580D0010F2BF /* libRNNotificationCenter.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,13 @@
 			remoteGlobalIDString = E23D7B471ACEFE2A00C59171;
 			remoteInfo = SQLite;
 		};
+		9F2F8C621C9E580D0010F2BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F2F8C5E1C9E580D0010F2BF /* react-native-notification-center.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9F2F8C2C1C9E49F30010F2BF;
+			remoteInfo = RNNotificationCenter;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -189,6 +197,7 @@
 		9F279A281C93E34400FF5E4F /* TaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTableViewController.swift; path = StatexTodo/TaskTableViewController.swift; sourceTree = "<group>"; };
 		9F279A2D1C93E35600FF5E4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = StatexTodo/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F279A2F1C9446EA00FF5E4F /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Store.swift; path = StatexTodo/Store.swift; sourceTree = "<group>"; };
+		9F2F8C5E1C9E580D0010F2BF /* react-native-notification-center.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "react-native-notification-center.xcodeproj"; path = "../lib/react-native-notification-center/ios/react-native-notification-center.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F2F8C641C9E596C0010F2BF /* libRNNotificationCenter.a in Frameworks */,
 				9F0DCEBD1C9D07EB00C10208 /* SQLite.framework in Frameworks */,
 				9F20825D1C8A870700851509 /* libsqlite3.tbd in Frameworks */,
 				9F20825B1C8A86FD00851509 /* libSQLite.a in Frameworks */,
@@ -332,6 +342,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				9F2F8C5E1C9E580D0010F2BF /* react-native-notification-center.xcodeproj */,
 				9F0DCE9D1C9D07B300C10208 /* SQLite.xcodeproj */,
 				9F20825C1C8A870700851509 /* libsqlite3.tbd */,
 				9F20824B1C8A86E700851509 /* SQLite.xcodeproj */,
@@ -395,6 +406,14 @@
 			isa = PBXGroup;
 			children = (
 				9F20825A1C8A86E700851509 /* libSQLite.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9F2F8C5F1C9E580D0010F2BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9F2F8C631C9E580D0010F2BF /* libRNNotificationCenter.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -501,6 +520,10 @@
 				{
 					ProductGroup = 139FDEE71B06529A00C62182 /* Products */;
 					ProjectRef = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
+				},
+				{
+					ProductGroup = 9F2F8C5F1C9E580D0010F2BF /* Products */;
+					ProjectRef = 9F2F8C5E1C9E580D0010F2BF /* react-native-notification-center.xcodeproj */;
 				},
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
@@ -641,6 +664,13 @@
 			fileType = archive.ar;
 			path = libSQLite.a;
 			remoteRef = 9F2082591C8A86E700851509 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9F2F8C631C9E580D0010F2BF /* libRNNotificationCenter.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNNotificationCenter.a;
+			remoteRef = 9F2F8C621C9E580D0010F2BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
