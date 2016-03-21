@@ -77,7 +77,7 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 22
     buildToolsVersion "23.0.1"
 
     defaultConfig {
@@ -126,6 +126,7 @@ dependencies {
 
     compile project(':react-native-sqlite-storage')
     compile project(':statex')
+    compile project(':rn-notification-center')
 
     debugCompile 'im.dino:dbinspector:3.2.3@aar'
 }

@@ -12,12 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import co.rewen.statex.StateXPackage;
+
 import com.facebook.react.LifecycleState;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
+
 import org.pgsqlite.SQLitePluginPackage;
+
+import co.rewen.react.notification.NotificationPackage;
+import co.rewen.statex.StateXPackage;
 
 public class TaskActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler, HasReactInstance
 {
@@ -37,6 +41,7 @@ public class TaskActivity extends AppCompatActivity implements DefaultHardwareBa
 			.addPackage(new MainReactPackage())
 			.addPackage(new StateXPackage())
 			.addPackage(new SQLitePluginPackage(this))
+			.addPackage(new NotificationPackage())
 			.setUseDeveloperSupport(BuildConfig.DEBUG)
 			.setInitialLifecycleState(LifecycleState.RESUMED)
 			.build();

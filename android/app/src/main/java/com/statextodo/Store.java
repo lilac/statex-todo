@@ -21,7 +21,8 @@ public class Store
 
 	public static SQLiteDatabase open(Context context, String name) {
 		File dbFile = context.getDatabasePath(name);
-		return SQLiteDatabase.openDatabase(dbFile.getPath(), null, SQLiteDatabase.OPEN_READONLY);
+		return SQLiteDatabase.openDatabase(dbFile.getPath(), null, SQLiteDatabase.OPEN_READONLY |
+				SQLiteDatabase.CREATE_IF_NECESSARY);
 	}
 
 	public Cursor all() {
