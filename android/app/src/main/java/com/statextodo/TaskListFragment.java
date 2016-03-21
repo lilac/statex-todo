@@ -4,8 +4,11 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -29,8 +32,16 @@ public class TaskListFragment extends Fragment
 		Cursor cursor = store.all();
 		RecyclerView.Adapter adapter = new TaskListAdapter(cursor);
 		listView.setAdapter(adapter);
+		listView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+		setHasOptionsMenu(true);
 		return view;
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+	{
+		inflater.inflate(R.menu.task_list, menu);
 	}
 
 	class TaskListAdapter extends RecyclerView.Adapter<TaskViewHolder> {
@@ -53,7 +64,7 @@ public class TaskListFragment extends Fragment
 		@Override
 		public TaskViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
 		{
-			View view = View.inflate(parent.getContext(), R.layout.task_view, parent);
+			View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_view, parent, false);
 			return new TaskViewHolder(view);
 		}
 

@@ -11,6 +11,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import co.rewen.statex.StateXPackage;
 import com.facebook.react.LifecycleState;
 import com.facebook.react.ReactInstanceManager;
@@ -18,7 +19,7 @@ import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
 import org.pgsqlite.SQLitePluginPackage;
 
-public class TaskActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler
+public class TaskActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler, HasReactInstance
 {
 	private ReactInstanceManager mReactInstanceManager;
 
@@ -40,6 +41,7 @@ public class TaskActivity extends AppCompatActivity implements DefaultHardwareBa
 			.setInitialLifecycleState(LifecycleState.RESUMED)
 			.build();
 
+		mReactInstanceManager.createReactContextInBackground();
 		setContentView(R.layout.toolbar_frame);
 
 		mBroadcastManager = LocalBroadcastManager.getInstance(this);
@@ -48,7 +50,22 @@ public class TaskActivity extends AppCompatActivity implements DefaultHardwareBa
 
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		fragmentManager.beginTransaction()
-			.replace(R.id.frame, new TaskListFragment());
+			.replace(R.id.frame, new TaskListFragment())
+			.commit();
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch(item.getItemId())
+		{
+			case R.id.add_task:
+				getSupportFragmentManager().beginTransaction()
+					.replace(R.id.frame, new TaskFragment())
+					.addToBackStack(null)
+					.commit();
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
@@ -62,7 +79,7 @@ public class TaskActivity extends AppCompatActivity implements DefaultHardwareBa
 		return super.onKeyUp(keyCode, event);
 	}
 
-	@Override
+	/*@Override
 	public void onBackPressed()
 	{
 		if(mReactInstanceManager != null)
@@ -73,7 +90,7 @@ public class TaskActivity extends AppCompatActivity implements DefaultHardwareBa
 		{
 			super.onBackPressed();
 		}
-	}
+	}*/
 
 	@Override
 	public void invokeDefaultOnBackPressed()
@@ -101,5 +118,11 @@ public class TaskActivity extends AppCompatActivity implements DefaultHardwareBa
 		{
 			mReactInstanceManager.onResume(this, this);
 		}
+	}
+
+	@Override
+	public ReactInstanceManager getReactInstance()
+	{
+		return mReactInstanceManager;
 	}
 }

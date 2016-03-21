@@ -30,7 +30,7 @@ public class Store
 
 	@Nullable
 	public Task get(long id) {
-		Cursor cursor = database.rawQuery("select * from tasks where id = {}", new String[]{ Long.toString(id) });
+		Cursor cursor = database.rawQuery("select * from tasks where id = ?", new String[]{ Long.toString(id) });
 		if(cursor.moveToNext()) {
 			String title = cursor.getString(1);
 			boolean completed = cursor.getInt(2) > 0;
