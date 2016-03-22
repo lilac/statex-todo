@@ -23,7 +23,8 @@ import org.pgsqlite.SQLitePluginPackage;
 import co.rewen.react.notification.NotificationPackage;
 import co.rewen.statex.StateXPackage;
 
-public class TaskActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler, HasReactInstance
+public class TaskActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler,
+		HasReactInstance
 {
 	private ReactInstanceManager mReactInstanceManager;
 

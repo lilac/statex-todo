@@ -14,6 +14,10 @@ import * as Utils from './utils';
 const NotificationManager = NativeModules.NotificationManager;
 let dbPromise = Todo.init();
 
+dbPromise.then( () => {
+    NotificationManager.postNotification("/dbInitialized");
+});
+
 async function add(task) {
   let db = await dbPromise;
   await db.transaction(Todo.add(task));

@@ -1,9 +1,13 @@
 package com.statextodo;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,6 +24,7 @@ import android.widget.TextView;
 public class TaskListFragment extends Fragment
 {
 	RecyclerView listView;
+	LocalBroadcastManager mBroadCastManager;
 
 	@Nullable
 	@Override
@@ -28,10 +33,7 @@ public class TaskListFragment extends Fragment
 		View view = inflater.inflate(R.layout.recycler_view, container, false);
 		listView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
-		Store store = new Store(getContext());
-		Cursor cursor = store.all();
-		RecyclerView.Adapter adapter = new TaskListAdapter(cursor);
-		listView.setAdapter(adapter);
+		mBroadCastManager = LocalBroadcastManager.getInstance(getContext());
 		listView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 		setHasOptionsMenu(true);
@@ -43,6 +45,28 @@ public class TaskListFragment extends Fragment
 	{
 		inflater.inflate(R.menu.task_list, menu);
 	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		mBroadCastManager.registerReceiver(receiver, Utils.getStateFilter("dbInitialized"));
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		mBroadCastManager.unregisterReceiver(receiver);
+	}
+
+	private BroadcastReceiver receiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			Store store = new Store(getContext());
+			Cursor cursor = store.all();
+			RecyclerView.Adapter adapter = new TaskListAdapter(cursor);
+			listView.setAdapter(adapter);
+		}
+	};
 
 	class TaskListAdapter extends RecyclerView.Adapter<TaskViewHolder> {
 		private Cursor cursor;
