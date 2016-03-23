@@ -8,14 +8,18 @@ import React, {
   NativeModules
 } from 'react-native';
 
+import StateX from 'react-native-statex';
+
 import * as Todo from './todo';
 import * as Utils from './utils';
 
 const NotificationManager = NativeModules.NotificationManager;
+
 let dbPromise = Todo.init();
 
 dbPromise.then( () => {
-    NotificationManager.postNotification("/dbInitialized");
+    //NotificationManager.postNotification("/dbInitialized");
+    StateX.setItem("initialized", "true");
 });
 
 async function add(task) {

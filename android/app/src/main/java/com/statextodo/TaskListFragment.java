@@ -1,8 +1,5 @@
 package com.statextodo;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,6 +31,10 @@ public class TaskListFragment extends Fragment
 		listView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
 		mBroadCastManager = LocalBroadcastManager.getInstance(getContext());
+		Store store = new Store(getContext());
+		Cursor cursor = store.all();
+		RecyclerView.Adapter adapter = new TaskListAdapter(cursor);
+		listView.setAdapter(adapter);
 		listView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 		setHasOptionsMenu(true);
@@ -45,28 +46,6 @@ public class TaskListFragment extends Fragment
 	{
 		inflater.inflate(R.menu.task_list, menu);
 	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		mBroadCastManager.registerReceiver(receiver, Utils.getStateFilter("dbInitialized"));
-	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
-		mBroadCastManager.unregisterReceiver(receiver);
-	}
-
-	private BroadcastReceiver receiver = new BroadcastReceiver() {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			Store store = new Store(getContext());
-			Cursor cursor = store.all();
-			RecyclerView.Adapter adapter = new TaskListAdapter(cursor);
-			listView.setAdapter(adapter);
-		}
-	};
 
 	class TaskListAdapter extends RecyclerView.Adapter<TaskViewHolder> {
 		private Cursor cursor;

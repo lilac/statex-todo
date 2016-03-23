@@ -4,8 +4,12 @@ package com.statextodo;
  * @author Junjun Deng 2016
  */
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
@@ -53,11 +57,7 @@ public class TaskActivity extends AppCompatActivity implements DefaultHardwareBa
 		mBroadcastManager = LocalBroadcastManager.getInstance(this);
 
 		setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		fragmentManager.beginTransaction()
-			.replace(R.id.frame, new TaskListFragment())
-			.commit();
+		update();
 	}
 
 	@Override
@@ -85,34 +85,38 @@ public class TaskActivity extends AppCompatActivity implements DefaultHardwareBa
 		return super.onKeyUp(keyCode, event);
 	}
 
-	/*@Override
-	public void onBackPressed()
-	{
-		if(mReactInstanceManager != null)
-		{
-			mReactInstanceManager.onBackPressed();
+	private void update() {
+		Fragment fragment;
+		String tag;
+		String value = new Store(this).getState("initialized");
+		boolean initialized = Boolean.parseBoolean(value);
+		if(initialized) {
+			fragment = new TaskListFragment();
+			tag = "taskList";
+		} else {
+			fragment = new WelcomeFragment();
+			tag = "welcome";
 		}
-		else
-		{
-			super.onBackPressed();
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		if(fragmentManager.findFragmentByTag(tag) == null) {
+			fragmentManager.beginTransaction()
+					.replace(R.id.frame, fragment, tag)
+					.commit();
 		}
-	}*/
+
+	}
+
+	private BroadcastReceiver receiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			update();
+		}
+	};
 
 	@Override
 	public void invokeDefaultOnBackPressed()
 	{
 		super.onBackPressed();
-	}
-
-	@Override
-	protected void onPause()
-	{
-		super.onPause();
-
-		if(mReactInstanceManager != null)
-		{
-			mReactInstanceManager.onPause();
-		}
 	}
 
 	@Override
@@ -124,6 +128,19 @@ public class TaskActivity extends AppCompatActivity implements DefaultHardwareBa
 		{
 			mReactInstanceManager.onResume(this, this);
 		}
+		mBroadcastManager.registerReceiver(receiver, Utils.getStateFilter("initialized"));
+	}
+
+	@Override
+	protected void onPause()
+	{
+		super.onPause();
+
+		if(mReactInstanceManager != null)
+		{
+			mReactInstanceManager.onPause();
+		}
+		mBroadcastManager.unregisterReceiver(receiver);
 	}
 
 	@Override

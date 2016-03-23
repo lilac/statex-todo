@@ -7,16 +7,20 @@ import android.support.annotation.Nullable;
 
 import java.io.File;
 
+import co.rewen.statex.StateXDatabaseSupplier;
+
 /**
  * @author Junjun Deng 2016
  */
 public class Store
 {
 	private SQLiteDatabase database;
+	private Context mContext;
 
 	public Store(Context context)
 	{
 		database = open(context, "todos");
+		mContext = context;
 	}
 
 	public static SQLiteDatabase open(Context context, String name) {
@@ -36,6 +40,17 @@ public class Store
 			String title = cursor.getString(1);
 			boolean completed = cursor.getInt(2) > 0;
 			return new Task(id, title, completed);
+		}
+		cursor.close();
+		return null;
+	}
+
+	public String getState(String key) {
+		SQLiteDatabase database = new StateXDatabaseSupplier(mContext).getReadableDatabase();
+		Cursor cursor = database.rawQuery("select value from state where key = ?",
+				new String[] {key});
+		if(cursor.moveToFirst()) {
+			return cursor.getString(0);
 		}
 		cursor.close();
 		return null;
