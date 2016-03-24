@@ -4,10 +4,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
+import co.rewen.statex.StateXDatabaseSupplier;
 
 import java.io.File;
-
-import co.rewen.statex.StateXDatabaseSupplier;
 
 /**
  * @author Junjun Deng 2016
@@ -15,12 +14,10 @@ import co.rewen.statex.StateXDatabaseSupplier;
 public class Store
 {
 	private SQLiteDatabase database;
-	private Context mContext;
 
 	public Store(Context context)
 	{
 		database = open(context, "todos");
-		mContext = context;
 	}
 
 	public static SQLiteDatabase open(Context context, String name) {
@@ -45,8 +42,8 @@ public class Store
 		return null;
 	}
 
-	public String getState(String key) {
-		SQLiteDatabase database = new StateXDatabaseSupplier(mContext).getReadableDatabase();
+	public static String getState(Context context, String key) {
+		SQLiteDatabase database = new StateXDatabaseSupplier(context).getReadableDatabase();
 		Cursor cursor = database.rawQuery("select value from state where key = ?",
 				new String[] {key});
 		if(cursor.moveToFirst()) {
