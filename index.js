@@ -36,3 +36,5 @@ async function remove(id) {
 
 NativeAppEventEmitter.addListener("task/add", add);
 NativeAppEventEmitter.addListener("task/delete", remove);
+
+export {NativeAppEventEmitter, StateX};
