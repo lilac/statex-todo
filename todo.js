@@ -11,13 +11,13 @@ const openDatabase = SQLite.openDatabase;
 
 export const ALL_TASK_SQL = 'SELECT * FROM tasks';
 export const CREATE_TABLE_SQL = 'CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY, title TEXT, status INTEGER DEFAULT 0)';
-export const ADD_TASK_SQL: string = 'INSERT INTO tasks (title) values (?)';
+export const ADD_TASK_SQL: string = 'INSERT INTO tasks (title, status) values (?, ?)';
 export const DELETE_TASK_SQL: string = 'DELETE FROM tasks WHERE id=?';
 
 type Task = {
   id: ?string,
   title: string,
-  status: number
+  completed: boolean
 }
 
 //type Database = {transaction: (tx: any) => void}
@@ -32,7 +32,7 @@ export function all(db: Database) {
  * @param task
  */
 export const add = (task: Task) => (transaction: SQLTransaction): Promise => {
-  return transaction.executeSql(ADD_TASK_SQL, [task.title])
+  return transaction.executeSql(ADD_TASK_SQL, [task.title, +task.completed])
 };
 
 export const remove = (id: string) => (transaction: SQLTransaction) => {
