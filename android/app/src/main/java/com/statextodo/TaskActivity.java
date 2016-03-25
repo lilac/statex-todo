@@ -55,7 +55,6 @@ public class TaskActivity extends AppCompatActivity implements DefaultHardwareBa
 		mBroadcastManager = LocalBroadcastManager.getInstance(this);
 
 		setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-		route();
 	}
 
 	@Override
@@ -123,6 +122,7 @@ public class TaskActivity extends AppCompatActivity implements DefaultHardwareBa
 		{
 			mReactInstanceManager.onResume(this, this);
 		}
+		route();
 		mBroadcastManager.registerReceiver(router, Utils.getStateFilter(Constants.LOCATION));
 	}
 
