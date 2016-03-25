@@ -61,19 +61,32 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Tr-mO-kfX">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2Tr-mO-kfX">
                                 <rect key="frame" x="531" y="149" width="51" height="31"/>
                                 <animations/>
                             </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCN-Al-SCP">
+                                <rect key="frame" x="20" y="154" width="85" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="xPY-EK-o9c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ZCN-Al-SCP" firstAttribute="centerY" secondItem="2Tr-mO-kfX" secondAttribute="centerY" id="4C3-hY-l6w"/>
                             <constraint firstItem="2Tr-mO-kfX" firstAttribute="trailing" secondItem="qrA-3l-CEh" secondAttribute="trailing" id="CCt-GT-AQ7"/>
                             <constraint firstItem="2Tr-mO-kfX" firstAttribute="top" secondItem="qrA-3l-CEh" secondAttribute="bottom" constant="8" symbolic="YES" id="HX5-i0-n5s"/>
+                            <constraint firstItem="ZCN-Al-SCP" firstAttribute="leading" secondItem="qrA-3l-CEh" secondAttribute="leading" id="IRx-11-gVd"/>
                             <constraint firstItem="qrA-3l-CEh" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="L27-Gc-Xke"/>
                             <constraint firstAttribute="trailing" secondItem="qrA-3l-CEh" secondAttribute="trailing" constant="20" id="omc-LQ-lOe"/>
                             <constraint firstItem="qrA-3l-CEh" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="37" id="tLm-G6-jAC"/>
+                            <constraint firstItem="ZCN-Al-SCP" firstAttribute="top" secondItem="qrA-3l-CEh" secondAttribute="bottom" constant="13" id="ujB-y1-bDg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add a todo" id="0aA-oX-rKJ">
