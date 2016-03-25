@@ -27,8 +27,9 @@ import org.pgsqlite.SQLitePluginPackage;
 public class TaskActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler,
 		HasReactInstance
 {
-	private ReactInstanceManager mReactInstanceManager;
+	private static final String TASKS_PATH = "/task";
 
+	private ReactInstanceManager mReactInstanceManager;
 	private LocalBroadcastManager mBroadcastManager;
 
 	@Override
@@ -54,7 +55,7 @@ public class TaskActivity extends AppCompatActivity implements DefaultHardwareBa
 		mBroadcastManager = LocalBroadcastManager.getInstance(this);
 
 		setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-		update();
+		route();
 	}
 
 	@Override
@@ -82,31 +83,28 @@ public class TaskActivity extends AppCompatActivity implements DefaultHardwareBa
 		return super.onKeyUp(keyCode, event);
 	}
 
-	private void update() {
+	private void route() {
 		Fragment fragment;
-		String tag;
-		String value = Store.getState(this, "initialized");
-		boolean initialized = Boolean.parseBoolean(value);
-		if(initialized) {
+		String location = Store.getState(this, Constants.LOCATION);
+		if(location == null) location = "/"; // default to root path
+
+		if(TASKS_PATH.equals(location)) {
 			fragment = new TaskListFragment();
-			tag = "taskList";
 		} else {
 			fragment = new WelcomeFragment();
-			tag = "welcome";
 		}
 		FragmentManager fragmentManager = getSupportFragmentManager();
-		if(fragmentManager.findFragmentByTag(tag) == null) {
+		if(fragmentManager.findFragmentByTag(location) == null) {
 			fragmentManager.beginTransaction()
-					.replace(R.id.frame, fragment, tag)
+					.replace(R.id.frame, fragment, location)
 					.commit();
 		}
-
 	}
 
-	private BroadcastReceiver receiver = new BroadcastReceiver() {
+	private BroadcastReceiver router = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			update();
+			route();
 		}
 	};
 
@@ -125,7 +123,7 @@ public class TaskActivity extends AppCompatActivity implements DefaultHardwareBa
 		{
 			mReactInstanceManager.onResume(this, this);
 		}
-		mBroadcastManager.registerReceiver(receiver, Utils.getStateFilter("initialized"));
+		mBroadcastManager.registerReceiver(router, Utils.getStateFilter(Constants.LOCATION));
 	}
 
 	@Override
@@ -137,7 +135,7 @@ public class TaskActivity extends AppCompatActivity implements DefaultHardwareBa
 		{
 			mReactInstanceManager.onPause();
 		}
-		mBroadcastManager.unregisterReceiver(receiver);
+		mBroadcastManager.unregisterReceiver(router);
 	}
 
 	@Override

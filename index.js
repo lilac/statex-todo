@@ -18,8 +18,7 @@ const NotificationManager = NativeModules.NotificationManager;
 let dbPromise = Todo.init();
 
 dbPromise.then( () => {
-    //NotificationManager.postNotification("/dbInitialized");
-    StateX.setItem("initialized", "true");
+    StateX.setItem("location", "/task");
 });
 
 async function add(task) {

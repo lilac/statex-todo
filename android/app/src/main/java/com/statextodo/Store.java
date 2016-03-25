@@ -42,6 +42,7 @@ public class Store
 		return null;
 	}
 
+	@Nullable
 	public static String getState(Context context, String key) {
 		SQLiteDatabase database = new StateXDatabaseSupplier(context).getReadableDatabase();
 		Cursor cursor = database.rawQuery("select value from state where key = ?",
