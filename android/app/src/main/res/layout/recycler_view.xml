@@ -4,17 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
+    <com.statextodo.ui.EmptyRecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+    </com.statextodo.ui.EmptyRecyclerView>
 
-    <TextView
-        android:id="@android:id/empty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@android:string/emptyPhoneNumber"
-        android:gravity="center"/>
+    <include layout="@layout/empty_view"/>
 </RelativeLayout>
 

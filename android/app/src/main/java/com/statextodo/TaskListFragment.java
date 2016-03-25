@@ -14,13 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import com.statextodo.ui.EmptyRecyclerView;
 
 /**
  * @author Junjun Deng 2016
  */
 public class TaskListFragment extends Fragment
 {
-	RecyclerView listView;
+	EmptyRecyclerView listView;
 	LocalBroadcastManager mBroadCastManager;
 
 	@Nullable
@@ -28,13 +29,14 @@ public class TaskListFragment extends Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		View view = inflater.inflate(R.layout.recycler_view, container, false);
-		listView = (RecyclerView) view.findViewById(R.id.recycler_view);
+		listView = (EmptyRecyclerView) view.findViewById(R.id.recycler_view);
 
 		mBroadCastManager = LocalBroadcastManager.getInstance(getContext());
 		Store store = new Store(getContext());
 		Cursor cursor = store.all();
 		RecyclerView.Adapter adapter = new TaskListAdapter(cursor);
 		listView.setAdapter(adapter);
+		listView.setEmptyView(view.findViewById(android.R.id.empty));
 		listView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 		setHasOptionsMenu(true);
