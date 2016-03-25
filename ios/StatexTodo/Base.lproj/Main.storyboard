@@ -61,10 +61,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Tr-mO-kfX">
+                                <rect key="frame" x="531" y="149" width="51" height="31"/>
+                                <animations/>
+                            </switch>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2Tr-mO-kfX" firstAttribute="trailing" secondItem="qrA-3l-CEh" secondAttribute="trailing" id="CCt-GT-AQ7"/>
+                            <constraint firstItem="2Tr-mO-kfX" firstAttribute="top" secondItem="qrA-3l-CEh" secondAttribute="bottom" constant="8" symbolic="YES" id="HX5-i0-n5s"/>
                             <constraint firstItem="qrA-3l-CEh" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="L27-Gc-Xke"/>
                             <constraint firstAttribute="trailing" secondItem="qrA-3l-CEh" secondAttribute="trailing" constant="20" id="omc-LQ-lOe"/>
                             <constraint firstItem="qrA-3l-CEh" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="37" id="tLm-G6-jAC"/>
@@ -83,6 +89,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="completedSwitch" destination="2Tr-mO-kfX" id="w5J-lI-Wta"/>
                         <outlet property="doneButton" destination="DMI-Sx-IuI" id="gQh-qd-Qp1"/>
                         <outlet property="textField" destination="qrA-3l-CEh" id="JpM-Qm-xKI"/>
                         <segue destination="BXi-z8-yOe" kind="unwind" identifier="cancel" unwindAction="addTaskCanceled:" id="9GL-15-ubr"/>
@@ -91,7 +98,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <exit id="BXi-z8-yOe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1523" y="141"/>
+            <point key="canvasLocation" x="1647" y="159"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="feg-KP-UR2">
@@ -129,7 +136,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdD-6s-nFG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="831" y="141"/>
+            <point key="canvasLocation" x="917" y="159"/>
         </scene>
     </scenes>
 </document>

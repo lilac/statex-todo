@@ -13,6 +13,7 @@ class AddTaskViewController: UIViewController {
   
   @IBOutlet var doneButton: UIBarButtonItem!
   @IBOutlet var textField: UITextField!
+  @IBOutlet var completedSwitch: UISwitch!
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -20,7 +21,7 @@ class AddTaskViewController: UIViewController {
   
   @IBAction func done(sender: UIBarButtonItem) {
     let delegate = AppDelegate.getDelegate()
-    let task = Task(title: self.textField.text!)
+    let task = Task(title: self.textField.text!, completed: completedSwitch.on)
 
     delegate.bridge!.eventDispatcher.sendAppEventWithName("task/add", body: task.dict())
     performSegueWithIdentifier("done", sender: nil)
